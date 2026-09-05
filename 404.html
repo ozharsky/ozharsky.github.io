@@ -6,70 +6,152 @@
 <title>Mossy Plant Tag</title>
 <style>
   :root{
-    --paper:#F7F8F5; --ink:#1B2420; --muted:#6B7670;
-    --leaf:#2A7D4F; --rule:#D9DED7; --card:#FFFFFF;
+    --paper:#F7F8F5;--ink:#1B2420;--muted:#6B7670;--leaf:#2A7D4F;
+    --rule:#D9DED7;--card:#FFF;--blue:#2D6CA8;
   }
   @media (prefers-color-scheme:dark){
-    :root{--paper:#121613;--ink:#E8EDE7;--muted:#94A09A;--leaf:#5FBF88;--rule:#2C3630;--card:#1A201C}
+    :root{--paper:#121613;--ink:#E8EDE7;--muted:#94A09A;--leaf:#5FBF88;
+          --rule:#2C3630;--card:#1A201C;--blue:#6BA6DC}
   }
   *{box-sizing:border-box}
-  body{
-    margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
-    padding:32px 20px;background:var(--paper);color:var(--ink);
-    font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
-  }
-  .card{max-width:420px;width:100%;text-align:center}
-  .mark{
-    width:76px;height:76px;margin:0 auto 22px;border-radius:50%;
-    background:var(--leaf);display:flex;align-items:center;justify-content:center;
-  }
-  .mark svg{width:40px;height:40px;fill:#fff}
-  h1{font-size:27px;line-height:1.15;margin:0 0 12px;letter-spacing:-.02em}
-  p{margin:0 0 18px;color:var(--muted)}
-  .plant{
-    background:var(--card);border:1px solid var(--rule);border-radius:14px;
-    padding:16px;margin:24px 0;text-align:left;display:none;
-  }
-  .plant.on{display:block}
-  .plant .lbl{
-    font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);
-    margin-bottom:5px;
-  }
-  .plant code{
-    font:13px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--ink);
-    word-break:break-all;
-  }
-  .cta{
-    display:inline-block;background:var(--leaf);color:#fff;text-decoration:none;
-    font-weight:600;padding:14px 30px;border-radius:999px;margin-top:4px;
-  }
-  .note{font-size:13px;color:var(--muted);margin-top:26px}
+  body{margin:0;padding:28px 20px 56px;background:var(--paper);color:var(--ink);
+    font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif}
+  .wrap{max-width:440px;margin:0 auto}
+  .mark{width:60px;height:60px;border-radius:50%;background:var(--leaf);
+    display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+  .mark svg{width:32px;height:32px;fill:#fff}
+  h1{font-size:28px;line-height:1.12;margin:0 0 6px;letter-spacing:-.02em}
+  .sub{color:var(--muted);margin:0 0 24px}
+  .card{background:var(--card);border:1px solid var(--rule);border-radius:14px;
+    padding:16px 18px;margin-bottom:12px}
+  .row{display:flex;gap:14px;align-items:flex-start}
+  .row+.row{margin-top:14px;padding-top:14px;border-top:1px solid var(--rule)}
+  .ico{font-size:19px;line-height:1.3;width:24px;flex:none;text-align:center}
+  .k{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .v{font-weight:600}
+  button{font:inherit;font-weight:600;border:0;border-radius:999px;padding:13px 22px;
+    background:var(--leaf);color:#fff;cursor:pointer;width:100%}
+  button.ghost{background:transparent;color:var(--muted);border:1px solid var(--rule);
+    padding:9px 16px;width:auto;font-size:13px;font-weight:500;margin-top:10px}
+  .log{margin-top:6px;font-size:13px;color:var(--muted)}
+  .note{font-size:13px;color:var(--muted);margin-top:26px;line-height:1.6}
+  .note b{color:var(--ink)}
+  code{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--muted);
+    word-break:break-all}
+  #generic{display:none}
 </style>
 </head>
 <body>
-  <div class="card">
-    <div class="mark">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C7 4 4 8 4 13a7 7 0 0 0 12 5c3-3 4-9 4-16-3 1-6 1-8 0Z"/></svg>
-    </div>
-    <h1>This is a Mossy plant tag</h1>
-    <p>Someone tagged a plant with it. Mossy identifies plants, writes their care report, and reminds you when to water — tap the tag and the plant comes straight up.</p>
-
-    <div class="plant" id="plant">
-      <div class="lbl">Plant on this tag</div>
-      <code id="pid"></code>
-    </div>
-
-    <a class="cta" href="#" id="cta">Get Mossy</a>
-    <p class="note">Already have Mossy? Open the app and use <b>Scan a Tag</b>.</p>
+<div class="wrap">
+  <div class="mark">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C7 4 4 8 4 13a7 7 0 0 0 12 5c3-3 4-9 4-16-3 1-6 1-8 0Z"/></svg>
   </div>
 
+  <div id="plant" hidden>
+    <h1 id="pname">Plant</h1>
+    <p class="sub">From a Mossy plant tag</p>
+
+    <div class="card" id="care"></div>
+
+    <div class="card">
+      <div class="k">Watering</div>
+      <div class="v" id="lastw">Not logged on this phone yet</div>
+      <div class="log" id="due"></div>
+      <div style="margin-top:14px"><button id="water">I watered it today</button></div>
+      <button class="ghost" id="undo" hidden>Undo last</button>
+    </div>
+
+    <p class="note">
+      Watering dates are saved <b>in this browser only</b> — nothing is uploaded and there's no account.
+      Clearing site data clears them.
+      <br><br>
+      The <b>Mossy app</b> identifies plants from a photo, writes these tags, and sends watering
+      reminders. It's iPhone-only for now.
+    </p>
+  </div>
+
+  <div id="generic">
+    <h1>This is a Mossy plant tag</h1>
+    <p class="sub">This tag doesn't carry plant details — it was written by an older version of the app. Re-write it from Mossy to make it readable here.</p>
+    <p class="note">Tag id<br><code id="pid"></code></p>
+  </div>
+</div>
+
 <script>
-  // The tag URL is /p/<uuid>. Show the id so a person can tell tags apart.
+(function () {
+  var q = new URLSearchParams(location.search);
+  var name = q.get('n');
+  var water = parseInt(q.get('w'), 10);
+  var light = q.get('l');
   var m = location.pathname.match(/\/p\/([0-9a-fA-F-]{36})/);
-  if (m) {
-    document.getElementById('pid').textContent = m[1];
-    document.getElementById('plant').classList.add('on');
+  var id = m ? m[1] : null;
+
+  if (!name) {
+    document.getElementById('generic').style.display = 'block';
+    if (id) document.getElementById('pid').textContent = id;
+    return;
   }
+
+  document.getElementById('plant').hidden = false;
+  document.getElementById('pname').textContent = name;
+  document.title = name + ' — Mossy';
+
+  var care = document.getElementById('care');
+  function row(icon, k, v) {
+    var d = document.createElement('div');
+    d.className = 'row';
+    d.innerHTML = '<div class="ico"></div><div><div class="k"></div><div class="v"></div></div>';
+    d.querySelector('.ico').textContent = icon;
+    d.querySelector('.k').textContent = k;
+    d.querySelector('.v').textContent = v;
+    care.appendChild(d);
+  }
+  if (light) row('☀️', 'Light', light);
+  if (water) row('💧', 'Water', 'About every ' + water + (water === 1 ? ' day' : ' days'));
+  if (!light && !water) care.remove();
+
+  // Per-browser watering log. No server, no account — the tag is the key.
+  var KEY = 'mossy:w:' + (id || name);
+  function read() {
+    try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { return []; }
+  }
+  function write(v) {
+    try { localStorage.setItem(KEY, JSON.stringify(v)); } catch (e) {}
+  }
+  function days(iso) {
+    return Math.floor((Date.now() - new Date(iso)) / 86400000);
+  }
+  function render() {
+    var log = read();
+    var lastEl = document.getElementById('lastw');
+    var dueEl = document.getElementById('due');
+    document.getElementById('undo').hidden = log.length === 0;
+    if (!log.length) {
+      lastEl.textContent = 'Not logged on this phone yet';
+      dueEl.textContent = '';
+      return;
+    }
+    var d = days(log[0]);
+    lastEl.textContent = d <= 0 ? 'Watered today'
+      : d === 1 ? 'Watered yesterday' : 'Watered ' + d + ' days ago';
+    if (water) {
+      var left = water - d;
+      dueEl.textContent = left > 1 ? 'Next in about ' + left + ' days'
+        : left === 1 ? 'Next tomorrow'
+        : left === 0 ? 'Due today' : 'Overdue by ' + (-left) + ' days';
+    }
+  }
+  document.getElementById('water').addEventListener('click', function () {
+    var log = read();
+    log.unshift(new Date().toISOString());
+    write(log.slice(0, 30));
+    render();
+  });
+  document.getElementById('undo').addEventListener('click', function () {
+    var log = read(); log.shift(); write(log); render();
+  });
+  render();
+})();
 </script>
 </body>
 </html>
