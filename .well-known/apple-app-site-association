@@ -1,0 +1,18 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": ["3B7J82G6ZT.com.olegzharsky.plantpal"],
+        "appID": "3B7J82G6ZT.com.olegzharsky.plantpal",
+        "paths": ["/p/*"],
+        "components": [
+          {
+            "/": "/p/*",
+            "comment": "Mossy plant tags — the plant id is the last path component"
+          }
+        ]
+      }
+    ]
+  }
+}
