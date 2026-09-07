@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Mossy App</title>
+<meta name="description" content="How Mossy identifies a plant, reads its health, tracks watering, and what the free app includes versus Mossy Pro.">
+<meta name="theme-color" content="#217045">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+
+<div class="progress" aria-hidden="true"></div>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="/">
+      <span class="disc" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="#fff"><path d="M12 21c-4 0-7-3-7-7 0-5 4-9 14-11 0 10-3 15-8 16-1 0-2 .3-3 2h-1c.6-2.6 2.4-5 5-7 1.8-1.4 3-3 3.6-4.6-2.4 1.8-5 3-7 5.4-1 1.2-1.6 2.6-1.6 4.2 0 1 .3 1.7 1 2z"/></svg>
+      </span>
+      Mossy
+    </a>
+    <nav>
+      <a href="/app/" class="hide-s" aria-current="page">The app</a>
+      <a href="/stakes/" class="hide-xs">The stakes</a>
+      <a class="btn btn-primary" href="/beta/">Join the beta</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <div class="page-hero">
+    <div class="wrap">
+      <p class="label">The app</p>
+      <h1>Everything Mossy does.</h1>
+      <p>One photo in, a full care report out &mdash; then the boring, useful
+        part: remembering what you watered and when.</p>
+    </div>
+  </div>
+
+  <!-- ── Identification ─────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap" style="display:grid;gap:clamp(2.4rem,5vw,4.5rem);
+         grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:center">
+      <div class="prose reveal">
+        <p class="label">Identification</p>
+        <h2 style="margin-top:1rem">It tells you how sure it is.</h2>
+        <p class="first">Most plant apps hand you a name with total confidence
+          and no way to argue. Mossy shows the number.</p>
+        <p>A scan runs Apple&rsquo;s on-device foundation model over your photo,
+          then cross-checks the answer against the Vision framework&rsquo;s read
+          of the plant&rsquo;s <strong>form</strong> &mdash; whether it looks like
+          a succulent, a fern, a vine, a palm. Agreement nudges the confidence up
+          a little; disagreement nudges it down. It is capped hard in both
+          directions, because Vision agreeing about shape is weak evidence about
+          species and should never manufacture certainty.</p>
+        <p>Anything under 50% is flagged on the plant&rsquo;s page with what to do
+          about it: better light, get closer, aim at the leaves.</p>
+        <div class="note">
+          <p class="t">You get the final say</p>
+          <p>Every plant shows your photo next to a reference photo of the
+            species. Confirm the match or correct the name &mdash; a correction
+            sticks, and a re-scan never overwrites it.</p>
+        </div>
+      </div>
+      <div class="device reveal">
+        <img src="/img/detail.png" width="620" height="1348" loading="lazy"
+             alt="A plant page showing 42% confidence, a low-confidence banner, and your photo beside the reference slot.">
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Health ─────────────────────────────────────────────────────── -->
+  <section class="tint">
+    <div class="wrap" style="display:grid;gap:clamp(2.4rem,5vw,4.5rem);
+         grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);align-items:center">
+      <div class="device reveal" style="order:2">
+        <img src="/img/care.png" width="620" height="1348" loading="lazy"
+             alt="The care requirements grid: light, water, temperature, humidity and soil, with pet safety below.">
+      </div>
+      <div class="prose reveal" style="order:1">
+        <p class="label">Health &amp; care</p>
+        <h2 style="margin-top:1rem">What it needs, and what&rsquo;s wrong.</h2>
+        <p class="first">Each scan produces a health verdict and a full care
+          sheet, written for the species it just identified.</p>
+        <ul>
+          <li><strong>Health</strong> &mdash; healthy, needs attention, or
+            critical, with notes on what it actually saw.</li>
+          <li><strong>Light, water, soil, temperature, humidity</strong> &mdash;
+            in plain sentences, not icons you have to decode.</li>
+          <li><strong>Pet safety</strong> &mdash; and where the species appears in
+            a curated database derived from the ASPCA&rsquo;s toxic plant list,
+            that verdict replaces the model&rsquo;s guess outright.</li>
+          <li><strong>Growth habit and general tips</strong> for the long run.</li>
+        </ul>
+        <div class="note">
+          <p class="t">A health read has a shelf life</p>
+          <p>It describes the photo you took, on the day you took it. Mossy
+            treats it that way everywhere &mdash; including in chat, which will
+            not tell you a plant looks healthy when you are standing in front of
+            it saying otherwise.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Watering ───────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap">
+      <div class="plate-head reveal">
+        <p class="label">Watering</p>
+        <h2>The part you actually open it for.</h2>
+        <p>Mossy reads the watering interval out of the care report &mdash;
+          &ldquo;soak every 7 days&rdquo; becomes a number &mdash; and counts from
+          the last time you logged one.</p>
+      </div>
+      <div class="features stagger">
+        <div class="feature">
+          <svg class="ix" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s5.5 5.4 5.5 9.4A5.5 5.5 0 0 1 12 18a5.5 5.5 0 0 1-5.5-5.6C6.5 8.4 12 3 12 3Z"/></svg>
+          <h3>One tap to log</h3>
+          <p>A Water button on the plant, on the journal card, and on the widget.
+            The last thirty waterings are kept per plant.</p>
+          <p class="spec">30 waterings kept</p>
+        </div>
+        <div class="feature">
+          <svg class="ix" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+          <h3>Reminders at 9am</h3>
+          <p>Opt in per plant. Notifications are one-shot, so Mossy re-arms them
+            every time you open the app.</p>
+          <p class="spec">Mossy Pro</p>
+        </div>
+        <div class="feature">
+          <svg class="ix" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 8h6M7 12h10M7 16h4"/></svg>
+          <h3>A widget that ages itself</h3>
+          <p>It stores a due date, not a countdown, and renders one entry per
+            day &mdash; so &ldquo;2 days late&rdquo; becomes &ldquo;9 days
+            late&rdquo; without the app ever running.</p>
+          <p class="spec">Home Screen &middot; Lock Screen</p>
+        </div>
+        <div class="feature">
+          <svg class="ix" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20a8 8 0 1 0-8-8"/><path d="M4 4v5h5"/></svg>
+          <h3>Water from the widget</h3>
+          <p>Tap the drop on the Home Screen and the watering is recorded
+            without opening Mossy. The row updates under your thumb.</p>
+          <p class="spec">Mossy Pro</p>
+        </div>
+        <div class="feature">
+          <svg class="ix" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h9"/></svg>
+          <h3>Sort and filter</h3>
+          <p>Filter to what needs water, what&rsquo;s healthy, what needs
+            attention, or what&rsquo;s toxic to pets. Search by common or
+            scientific name.</p>
+          <p class="spec">5 filters</p>
+        </div>
+        <div class="feature">
+          <svg class="ix" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v13H3z"/><path d="M8 7V4h8v3"/><circle cx="12" cy="13.5" r="2.6"/></svg>
+          <h3>Growth photos</h3>
+          <p>A photo every few weeks, kept alongside the watering log so you can
+            line up what you did against what happened.</p>
+          <p class="spec">24 photos per plant</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Chat ───────────────────────────────────────────────────────── -->
+  <section class="tint">
+    <div class="wrap" style="display:grid;gap:clamp(2.4rem,5vw,4.5rem);
+         grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:center">
+      <div class="prose reveal">
+        <p class="label">Ask Mossy</p>
+        <h2 style="margin-top:1rem">A chat that has read the file.</h2>
+        <p class="first">Ask about the plant in front of you and the answer knows
+          which plant that is.</p>
+        <p>The conversation is seeded with the species, the care report, the
+          watering interval and how many days it has actually been. Ask
+          &ldquo;why are the tips brown?&rdquo; on a plant nine days past its soak
+          and the reply says so, rather than reciting a list of six possible
+          causes.</p>
+        <p>It runs on the phone. No connection needed, nothing sent anywhere,
+          and no per-message cost to anyone.</p>
+        <p class="mono-note">Mossy Pro &middot; on-device &middot; works in aeroplane mode</p>
+      </div>
+      <div class="device reveal">
+        <img src="/img/chat.png" width="620" height="1348" loading="lazy"
+             alt="A chat where the answer cites the plant being nine days dry against its seven-day soak interval.">
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Free vs Pro ────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap">
+      <div class="plate-head reveal">
+        <p class="label">What it costs</p>
+        <h2>Scanning is free and stays free.</h2>
+        <p>Identification and care reports are the app. They are not the
+          trial. Mossy Pro is a one-time purchase that adds the extras.</p>
+      </div>
+      <div class="tablewrap reveal">
+        <table>
+          <thead>
+            <tr><th scope="col">Feature</th><th scope="col">Free</th><th scope="col">Mossy Pro</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Scan and identify</strong></td><td>Unlimited</td><td>Unlimited</td></tr>
+            <tr><td><strong>Care reports</strong></td><td>Unlimited</td><td>Unlimited</td></tr>
+            <tr><td><strong>Health assessment</strong></td><td>Yes</td><td>Yes</td></tr>
+            <tr><td><strong>Watering log</strong></td><td>Yes</td><td>Yes</td></tr>
+            <tr><td><strong>Growth photos</strong></td><td>Yes</td><td>Yes</td></tr>
+            <tr><td><strong>Watering reminders</strong></td><td>&mdash;</td><td>Yes</td></tr>
+            <tr><td><strong>Ask Mossy chat</strong></td><td>&mdash;</td><td>Yes</td></tr>
+            <tr><td><strong>Write NFC plant tags</strong></td><td>&mdash;</td><td>Yes</td></tr>
+            <tr><td><strong>Share cards</strong></td><td>&mdash;</td><td>Yes</td></tr>
+            <tr><td><strong>Price</strong></td><td>Free</td><td>One-time, no subscription</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mono-note reveal">Beta testers get the Pro features unlocked while
+        the TestFlight build is running.</p>
+    </div>
+  </section>
+
+  <!-- ── Requirements ───────────────────────────────────────────────── -->
+  <section class="tint">
+    <div class="wrap">
+      <div class="plate-head reveal">
+        <p class="label">Requirements</p>
+        <h2>What you need to run it.</h2>
+      </div>
+      <div style="display:grid;gap:clamp(2rem,4vw,3.5rem);
+           grid-template-columns:repeat(2,minmax(0,1fr));margin-top:2.4rem"
+           class="stagger">
+        <div>
+          <ul class="specs" style="margin-top:0">
+            <li><span class="k">Device</span><span class="v">iPhone with Apple Intelligence</span></li>
+            <li><span class="k">Identification</span><span class="v">On-device foundation model</span></li>
+            <li><span class="k">Cross-check</span><span class="v">Vision framework</span></li>
+            <li><span class="k">Storage</span><span class="v">On device, no account</span></li>
+            <li><span class="k">Writing tags</span><span class="v">NFC-capable iPhone</span></li>
+          </ul>
+        </div>
+        <div class="prose" style="margin-top:0">
+          <p style="margin-top:0">Mossy leans entirely on Apple&rsquo;s on-device
+            model, which is what makes the privacy promise possible &mdash; and
+            also what sets the hardware floor. Without Apple Intelligence
+            available there is nothing to run the identification on, and the app
+            says so plainly rather than failing quietly.</p>
+          <p>Reading a plant tag works on any modern iPhone. Writing one needs
+            NFC and Mossy Pro.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<nav class="next" aria-label="Keep reading">
+  <a href="/stakes/">
+    <span class="k">Next</span>
+    <span class="t">The stakes</span>
+    <span class="d">Four printable parts, real dimensions, and which chip to buy.</span>
+  </a>
+  <a href="/beta/">
+    <span class="k">Or</span>
+    <span class="t">Join the beta</span>
+    <span class="d">What to test, what&rsquo;s still rough, and how to send feedback.</span>
+  </a>
+</nav>
+
+<footer>
+  <div class="wrap foot">
+    <nav>
+      <a href="/"><strong>Mossy</strong></a>
+      <a href="/app/">The app</a>
+    </nav>
+    <nav>
+      <a href="/stakes/">The stakes</a>
+      <a href="/beta/">Join the beta</a>
+    </nav>
+    <nav>
+      <a href="/privacy/">Privacy</a>
+      <a href="mailto:ozharsky@gmail.com">Contact</a>
+    </nav>
+    <span class="sp">Made for plants that deserve better.</span>
+  </div>
+</footer>
+
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

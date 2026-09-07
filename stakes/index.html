@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mossy Plant Stakes</title>
+<meta name="description" content="Four printable NFC plant tags — real dimensions, how the inlay gets sealed in, which chip to buy, and what actually goes on the tag.">
+<meta name="theme-color" content="#217045">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+
+<div class="progress" aria-hidden="true"></div>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="/">
+      <span class="disc" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="#fff"><path d="M12 21c-4 0-7-3-7-7 0-5 4-9 14-11 0 10-3 15-8 16-1 0-2 .3-3 2h-1c.6-2.6 2.4-5 5-7 1.8-1.4 3-3 3.6-4.6-2.4 1.8-5 3-7 5.4-1 1.2-1.6 2.6-1.6 4.2 0 1 .3 1.7 1 2z"/></svg>
+      </span>
+      Mossy
+    </a>
+    <nav>
+      <a href="/app/" class="hide-s">The app</a>
+      <a href="/stakes/" class="hide-xs" aria-current="page">The stakes</a>
+      <a class="btn btn-primary" href="/beta/">Join the beta</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <div class="page-hero">
+    <div class="wrap">
+      <p class="label">The plant stakes</p>
+      <h1>Four parts, one chip, no server.</h1>
+      <p>A 25&nbsp;mm NFC inlay sealed inside a printed green tag. Tap it and
+        Mossy opens that plant. Tap it with anything else and you still get a
+        page that tells you how to water it.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <figure class="photo wide reveal">
+        <img src="/img/stake.jpg" width="1500" height="1125" loading="lazy"
+             alt="A green Mossy garden stake in a pot of pothos, its white NFC mark facing the camera and a handwritten label in the slot below.">
+      </figure>
+      <figcaption class="figcap reveal">Garden stake, printed in PLA. The mark is
+        a second body in the model, so the slicer gives it white filament &mdash;
+        it is not painted on.</figcaption>
+    </div>
+  </section>
+
+  <!-- ── The four parts ─────────────────────────────────────────────── -->
+  <section class="tint">
+    <div class="wrap">
+      <div class="plate-head reveal">
+        <p class="label">The set</p>
+        <h2>Four shapes, because pots differ.</h2>
+        <p>Every one takes the same 25&nbsp;mm inlay and carries the same mark.
+          Drawn here to a single scale.</p>
+      </div>
+
+      <div class="drawing reveal" style="margin-top:3rem;max-width:none">
+        <svg viewBox="-8 -8 254 210" role="img" style="max-width:820px"
+             aria-label="The four Mossy tag shapes drawn to one scale: garden stake 38 by 162 mm, indoor stake 36 by 102 mm, soil disc 34 mm across, and hang tag 64 by 34 mm.">
+          <defs>
+            <!-- The contactless mark, exactly as the Fusion model builds it:
+                 arcs at 4.5 / 8.2 / 12.0 mm, 2.1 mm stroke, 42° half-angle,
+                 3.6 mm dot — about 18 mm tall. Shifted so the whole glyph,
+                 not the arc centre, sits on the coil. -->
+            <g id="mark" stroke="#fff" stroke-width="2.1" fill="none" stroke-linecap="round">
+              <circle cx="-5.1" cy="0" r="1.8" fill="#fff" stroke="none"/>
+              <path d="M-1.756 -3.011 A4.5 4.5 0 0 1 -1.756 3.011"/>
+              <path d="M0.993 -5.487 A8.2 8.2 0 0 1 0.993 5.487"/>
+              <path d="M3.817 -8.029 A12 12 0 0 1 3.817 8.029"/>
+            </g>
+          </defs>
+
+          <!-- 01 Garden stake -->
+          <path d="M15 60 H23 V146 L19 170 L15 146 Z" fill="var(--leaf)"/>
+          <rect x="0" y="8" width="38" height="52" rx="6" fill="var(--leaf)"/>
+          <use href="#mark" x="19" y="27"/>
+          <rect x="5" y="45.5" width="28" height="9" rx="1.5" fill="#fff" opacity=".92"/>
+
+          <!-- 02 Indoor stake -->
+          <path d="M74.5 118 H81.5 V154 L78 170 L74.5 154 Z" fill="var(--leaf)"/>
+          <rect x="60" y="68" width="36" height="50" rx="6" fill="var(--leaf)"/>
+          <use href="#mark" x="78" y="87"/>
+          <rect x="65" y="105" width="26" height="8" rx="1.5" fill="#fff" opacity=".92"/>
+
+          <!-- 03 Soil disc, with the four grip scallops -->
+          <circle cx="135" cy="153" r="17" fill="var(--leaf)"/>
+          <circle cx="152" cy="153" r="1.5" fill="var(--paper-2)"/>
+          <circle cx="118" cy="153" r="1.5" fill="var(--paper-2)"/>
+          <circle cx="135" cy="170" r="1.5" fill="var(--paper-2)"/>
+          <circle cx="135" cy="136" r="1.5" fill="var(--paper-2)"/>
+          <use href="#mark" x="135" y="153"/>
+
+          <!-- 04 Hang tag -->
+          <rect x="174" y="136" width="64" height="34" rx="12" fill="var(--leaf)"/>
+          <circle cx="183" cy="153" r="2" fill="var(--paper-2)"/>
+          <use href="#mark" x="214" y="153"/>
+
+          <!-- 5 units = 5 mm here: the shared .dim size is tuned for a taller
+               viewBox and runs the four captions into each other at this one. -->
+          <g class="dim" style="font-size:5px">
+            <text x="19"  y="182" text-anchor="middle">01 Garden Stake</text>
+            <text x="19"  y="189.5" text-anchor="middle" opacity=".72">38 &#215; 162 mm</text>
+            <text x="78"  y="182" text-anchor="middle">02 Indoor Stake</text>
+            <text x="78"  y="189.5" text-anchor="middle" opacity=".72">36 &#215; 102 mm</text>
+            <text x="135" y="182" text-anchor="middle">03 Soil Disc</text>
+            <text x="135" y="189.5" text-anchor="middle" opacity=".72">&#8709;34 &#215; 3.4 mm</text>
+            <text x="206" y="182" text-anchor="middle">04 Hang Tag</text>
+            <text x="206" y="189.5" text-anchor="middle" opacity=".72">64 &#215; 34 mm</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="features stagger" style="margin-top:2.6rem">
+        <div class="feature">
+          <h3>01 &nbsp;Garden Stake</h3>
+          <p>The outdoor one. A 110&nbsp;mm shaft with a 24&nbsp;mm point, so most
+            of its length is below the soil and the head does not lean.</p>
+          <p class="spec">38 &#215; 52 &#215; 4 mm head</p>
+        </div>
+        <div class="feature">
+          <h3>02 &nbsp;Indoor Stake</h3>
+          <p>Shorter and thinner for houseplants. This replaced a pot-rim clip:
+            rims run from 2&nbsp;mm of nursery plastic to 20&nbsp;mm of glazed
+            ceramic, so no fixed clip gap fits a useful share of them. A spike
+            fits every pot instead.</p>
+          <p class="spec">36 &#215; 50 &#215; 3.5 mm head</p>
+        </div>
+        <div class="feature">
+          <h3>03 &nbsp;Soil Disc</h3>
+          <p>Lies flat on the soil for pots too shallow to spike. Four scallops
+            around the rim, because a flush disc is genuinely hard to get back
+            out of wet soil.</p>
+          <p class="spec">&#8709;34 &#215; 3.4 mm</p>
+        </div>
+        <div class="feature">
+          <h3>04 &nbsp;Hang Tag</h3>
+          <p>A 4&nbsp;mm hole for a hanging basket, a trellis, or a shelf hook.
+            The only one that is wider than it is tall.</p>
+          <p class="spec">64 &#215; 34 &#215; 3 mm</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── How it prints ──────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap" style="display:grid;gap:clamp(2.4rem,5vw,4.5rem);
+         grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);align-items:center">
+      <div class="drawing reveal">
+        <svg viewBox="-24 -14 134 196" class="stake-fig" tabindex="0" role="img"
+             aria-label="Garden stake elevation: 38 mm wide, 52 mm head, 162 mm overall, with a 25.8 mm inlay pocket and a 28 by 9 mm paper window.">
+          <g style="transform-origin:19px 19px">
+            <path class="wave w1" d="M3.817 -8.029 A12 12 0 0 1 3.817 8.029" transform="translate(19,19)"/>
+            <path class="wave w2" d="M5.42 -11.4 A17 17 0 0 1 5.42 11.4" transform="translate(19,19)"/>
+            <path class="wave w3" d="M7.02 -14.72 A22 22 0 0 1 7.02 14.72" transform="translate(19,19)"/>
+          </g>
+          <path d="M15 52 H23 V138 L19 162 L15 138 Z" fill="var(--leaf)"/>
+          <rect x="0" y="0" width="38" height="52" rx="6" fill="var(--leaf)"/>
+          <g stroke="#fff" stroke-width="2.1" fill="none" stroke-linecap="round"
+             transform="translate(19,19)">
+            <circle cx="-5.1" cy="0" r="1.8" fill="#fff" stroke="none"/>
+            <path d="M-1.756 -3.011 A4.5 4.5 0 0 1 -1.756 3.011"/>
+            <path d="M0.993 -5.487 A8.2 8.2 0 0 1 0.993 5.487"/>
+            <path d="M3.817 -8.029 A12 12 0 0 1 3.817 8.029"/>
+          </g>
+          <rect x="5" y="37.5" width="28" height="9" rx="1.5" fill="none"
+                stroke="#fff" stroke-width="1.1" stroke-dasharray="2.4 1.9" opacity=".9"/>
+          <g class="dimline">
+            <path d="M0 -7 H38 M0 -9.5 V-4.5 M38 -9.5 V-4.5"/>
+            <path d="M-7 0 V52 M-9.5 0 H-4.5 M-9.5 52 H-4.5"/>
+            <path d="M46 0 V162 M43.5 0 H48.5 M43.5 162 H48.5"/>
+            <path d="M31 19 H64"/>
+            <path d="M33 42 H64"/>
+          </g>
+          <g class="dim">
+            <text x="19" y="-10" text-anchor="middle">38 mm</text>
+            <text x="-11" y="28" text-anchor="end">52 mm</text>
+            <text x="50" y="84">162 mm</text>
+            <text x="66" y="20.6">&#8709;25.8 pocket</text>
+            <text x="66" y="43.6">28 &#215; 9 window</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="prose reveal">
+        <p class="label">Printing</p>
+        <h2 style="margin-top:1rem">The printer pauses, you drop the chip in.</h2>
+        <p class="first">There is no glue, no lid and no snap fit. The inlay is
+          buried in the middle of the print.</p>
+        <p>The pocket floor lands at <strong>Z&nbsp;=&nbsp;1.9&nbsp;mm</strong>
+          &mdash; 1.2&nbsp;mm of cover between the readable face and the coil,
+          plus a 0.7&nbsp;mm pocket. Pause the print there, drop in the 25&nbsp;mm
+          inlay, resume, and the remaining layers close over it. The pocket is
+          cut at 25.8&nbsp;mm, which is 0.8&nbsp;mm of clearance over a 25&nbsp;mm
+          inlay &mdash; about right for a 0.4&nbsp;mm nozzle, though shrink varies
+          by filament.</p>
+        <h3>The mark is filament, not paint</h3>
+        <p>The contactless glyph is built twice in the model: once as a
+          0.4&nbsp;mm recess in the face, and once as a matching solid that fills
+          it. Two separate bodies means a multi-material slicer can assign the
+          mark its own colour with no painting and no post-processing. On a
+          single-extruder printer, the recess alone still reads well.</p>
+        <p>It is there for a practical reason. NFC range is only 1&ndash;2&nbsp;cm,
+          so an unmarked face just gets waved at &mdash; and everyone already
+          reads that symbol as &ldquo;tap here&rdquo; from payment terminals.</p>
+        <div class="note">
+          <p class="t">The paper slot is a trap, on purpose</p>
+          <p>A channel behind the face is 1.5&nbsp;mm wider than the opening on
+            every side, so a paper strip pushed in through the mouth at the right
+            edge cannot fall out the front. Front skin 0.9&nbsp;mm, channel
+            0.8&nbsp;mm &mdash; paper or label stock both fit.</p>
+        </div>
+        <ul class="specs">
+          <li><span class="k">Inlay</span><span class="v">&#8709;25 mm round, NTAG213+</span></li>
+          <li><span class="k">Pocket</span><span class="v">&#8709;25.8 &#215; 0.7 mm</span></li>
+          <li><span class="k">Face cover</span><span class="v">1.2 mm</span></li>
+          <li><span class="k">Pause height</span><span class="v">Z = 1.9 mm</span></li>
+          <li><span class="k">Mark recess</span><span class="v">0.4 mm deep</span></li>
+          <li><span class="k">Mark height</span><span class="v">~18 mm</span></li>
+          <li><span class="k">Material</span><span class="v">PLA, green + white</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Which chip ─────────────────────────────────────────────────── -->
+  <section class="tint">
+    <div class="wrap">
+      <div class="plate-head reveal">
+        <p class="label">The chip</p>
+        <h2>NTAG213 is enough. NTAG215 buys headroom.</h2>
+        <p>Both are 25&nbsp;mm round inlays and both drop into the same pocket.
+          The only thing that changes is how much you can write.</p>
+      </div>
+      <div class="tablewrap reveal">
+        <table>
+          <thead>
+            <tr><th scope="col"></th><th scope="col">NTAG213</th><th scope="col">NTAG215</th><th scope="col">NTAG216</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>User memory</strong></td><td>144 B</td><td>504 B</td><td>888 B</td></tr>
+            <tr><td><strong>Free for a message</strong></td><td>~137 B</td><td>~492 B</td><td>~872 B</td></tr>
+            <tr><td><strong>Holds a Mossy tag</strong></td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+            <tr><td><strong>Room for a long name</strong></td><td>Tight</td><td>Comfortable</td><td>Comfortable</td></tr>
+            <tr><td><strong>Cost per tag</strong></td><td>Lowest</td><td>Higher</td><td>Highest</td></tr>
+            <tr><td><strong>Verdict</strong></td><td><strong>Buy these</strong></td><td>If you want slack</td><td>Overkill</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mono-note reveal">Mossy checks the capacity before writing and
+        drops optional parts of the message until it fits, so a 213 never fails
+        for being small.</p>
+    </div>
+  </section>
+
+  <!-- ── What's on the tag ──────────────────────────────────────────── -->
+  <section>
+    <div class="wrap" style="display:grid;gap:clamp(2.4rem,5vw,4rem);
+         grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:center">
+      <div class="prose reveal">
+        <p class="label">What gets written</p>
+        <h2 style="margin-top:1rem">One link, carrying the plant with it.</h2>
+        <p class="first">A Mossy tag holds a single URL. The plant&rsquo;s id is
+          the last path component, and the useful bits ride along in the query.</p>
+        <ul>
+          <li><strong>The id</strong> &mdash; what Mossy uses to open the right
+            plant.</li>
+          <li><strong>n</strong> &mdash; the plant&rsquo;s name, clamped to
+            30&nbsp;bytes.</li>
+          <li><strong>w</strong> &mdash; watering interval in days.</li>
+          <li><strong>l</strong> &mdash; light needs, clamped to 26&nbsp;bytes.</li>
+        </ul>
+        <p>Those extras exist for the people who are not you. Android taps a tag
+          straight into a browser, and there is no Mossy for Android &mdash; so a
+          tag carrying only an id would give them nothing. Carrying the name and
+          care in the link makes the page self-describing with no server, no
+          database and no account.</p>
+        <div class="note">
+          <p class="t">Why it all has to fit in one record</p>
+          <p>iOS and Android both act on the <strong>first</strong> NDEF record
+            only. Anything in a trailing text record is invisible to them, so a
+            second record would be dead weight. Everything worth reading goes in
+            the URL.</p>
+        </div>
+        <p class="mono-note">Byte-counted, not character-counted &mdash; a
+          &ldquo;&middot;&rdquo; costs two.</p>
+      </div>
+
+      <div class="reveal">
+        <figure class="photo three-two">
+          <img src="/img/tap.jpg" width="1600" height="1067" loading="lazy"
+               alt="A hand holding a phone to the head of a green Mossy stake planted in a pot.">
+        </figure>
+        <div class="steps" style="margin-top:2.4rem">
+          <div class="step">
+            <h3>The phone reads it</h3>
+            <p>Nothing to open first. iPhone picks the stake up from the lock
+              screen and offers the link.</p>
+          </div>
+          <div class="step">
+            <h3>Mossy opens that plant</h3>
+            <p>It is a Universal Link, so it skips the browser entirely and lands
+              on the plant&rsquo;s own page.</p>
+          </div>
+          <div class="step">
+            <h3>Everyone else gets a page</h3>
+            <p>No app, no problem &mdash; the link renders a care page built
+              entirely from what the tag carries.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Writing one ────────────────────────────────────────────────── -->
+  <section class="band">
+    <div class="wrap">
+      <p class="label reveal">Writing a tag</p>
+      <h2 class="reveal">Three taps, then hold it near the head.</h2>
+      <p class="body reveal">Open the plant, choose <em>Write to Plant Tag</em>,
+        and hold the top of your iPhone against the mark. Mossy writes the link,
+        stamps the plant as tagged, and from then on that stake is that plant.
+        Re-writing a tag just overwrites it.</p>
+      <div class="cols stagger">
+        <p class="pt"><strong>Needs Mossy Pro</strong>Writing tags is a Pro
+          feature. Reading them is not &mdash; anyone can tap.</p>
+        <p class="pt"><strong>Needs a real iPhone</strong>The Simulator has no NFC
+          hardware, and NFC needs a paid developer account to enable at all.</p>
+      </div>
+      <div class="cta-row reveal">
+        <a class="btn btn-ghost" href="/beta/">Get the app first <span class="arw">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<nav class="next" aria-label="Keep reading">
+  <a href="/app/">
+    <span class="k">Back to</span>
+    <span class="t">The app in full</span>
+    <span class="d">How identification works, what&rsquo;s free, and what Pro adds.</span>
+  </a>
+  <a href="/beta/">
+    <span class="k">Next</span>
+    <span class="t">Join the beta</span>
+    <span class="d">What to test, what&rsquo;s still rough, and how to send feedback.</span>
+  </a>
+</nav>
+
+<footer>
+  <div class="wrap foot">
+    <nav>
+      <a href="/"><strong>Mossy</strong></a>
+      <a href="/app/">The app</a>
+    </nav>
+    <nav>
+      <a href="/stakes/">The stakes</a>
+      <a href="/beta/">Join the beta</a>
+    </nav>
+    <nav>
+      <a href="/privacy/">Privacy</a>
+      <a href="mailto:ozharsky@gmail.com">Contact</a>
+    </nav>
+    <span class="sp">Made for plants that deserve better.</span>
+  </div>
+</footer>
+
+<script src="/assets/site.js" defer></script>
+</body>
+</html>
