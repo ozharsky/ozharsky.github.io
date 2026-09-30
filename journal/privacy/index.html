@@ -87,8 +87,13 @@
       <h2 class="reveal">Location</h2>
       <p class="reveal">If you grant permission, the app records the
         <strong>approximate city name</strong> (for example &ldquo;Portland,
-        OR&rdquo;) alongside an entry. Precise coordinates are never stored.
-        Location is never transmitted off your device. You can deny or revoke this
+        OR&rdquo;) alongside an entry. To turn your location into that name, iOS sends
+        the coordinates to Apple&rsquo;s mapping service &mdash; that is Apple&rsquo;s standard
+        reverse geocoding, governed by
+        <a href="https://www.apple.com/legal/privacy/">Apple&rsquo;s privacy policy</a>, and
+        we never receive the coordinates or the result. Only the resulting place name
+        is saved, on your device. Precise coordinates are never stored. You can deny
+        or revoke this
         permission at any time in iOS Settings, and the app works normally without
         it.</p>
 
