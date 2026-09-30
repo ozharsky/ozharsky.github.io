@@ -366,3 +366,106 @@ footer{border-top:1px solid var(--rule);padding-block:3rem;font-size:.85rem;colo
   padding:1.1rem 1.2rem;box-shadow:var(--shadow-s)}
 .swatch .n{font-family:Fraunces,Georgia,serif;font-size:1.1rem;font-weight:600}
 .swatch .d{font-size:.84rem;color:var(--muted);margin-top:.25rem}
+
+/* ─── Hero layout ────────────────────────────────────────────────────── */
+/* Two columns once there's room; the demo stacks under the copy on phones. */
+.hero-grid{display:grid;gap:clamp(2.5rem,5vw,4rem);align-items:center}
+@media (min-width:940px){
+  .hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,23rem)}
+  .hero-inner{max-width:34ch}
+  /* The display size is tuned for a full-width hero; in two columns it has
+     roughly half the room and needs to come down or it wraps to six lines. */
+  .hero-grid .hero-inner h1{font-size:clamp(2.6rem,4.4vw,4rem)}
+  /* The demo already gives the hero its height — the deep bottom padding was
+     there to make room for the device fan overlapping upward. */
+  .hero{padding-block:clamp(3rem,6vw,5rem) clamp(7rem,12vw,10rem)}
+}
+
+/* ─── Hero demo: an entry, and what the phone makes of it ────────────── */
+.demo-stack{position:relative;perspective:1200px}
+/* Two blank cards peeking out behind, so the stack reads as a journal
+   rather than a single card. */
+.demo-stack::before,.demo-stack::after{
+  content:"";position:absolute;inset:0;border-radius:1.4rem;
+  background:var(--card);border:1px solid var(--rule);box-shadow:var(--shadow-s);
+}
+.demo-stack::before{transform:rotate(-3deg) translateY(10px) scale(.97);opacity:.55}
+.demo-stack::after{transform:rotate(2deg) translateY(5px) scale(.985);opacity:.8}
+
+.demo-card{
+  position:relative;z-index:2;background:var(--card);border:1px solid var(--rule);
+  border-radius:1.4rem;box-shadow:var(--shadow-l);overflow:hidden;
+  width:100%;text-align:left;font:inherit;color:inherit;cursor:pointer;
+  display:block;padding:0;
+}
+.demo-card:hover{border-color:var(--accent)}
+.demo-meta{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;
+  padding:1.1rem 1.3rem .2rem}
+.demo-mood{font-size:.72rem;font-weight:600;padding:.2rem .6rem;border-radius:999px;
+  background:color-mix(in srgb,var(--m) 16%,transparent);color:var(--m)}
+.demo-date{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted)}
+.demo-title{font-family:Fraunces,Georgia,serif;font-size:1.32rem;font-weight:600;
+  letter-spacing:-.02em;padding:.5rem 1.3rem 0;line-height:1.15}
+.demo-body{padding:.6rem 1.3rem 1.1rem;font-size:.88rem;color:var(--muted);
+  min-height:5em}
+/* The caret only shows while text is still arriving. */
+.demo-body::after{content:"▏";color:var(--accent);opacity:0}
+.demo-card.typing .demo-body::after{opacity:1;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+.demo-art{position:relative;aspect-ratio:1;border-top:1px solid var(--rule);
+  background:
+    linear-gradient(135deg,
+      color-mix(in srgb,var(--m) 22%,var(--paper-2)),
+      color-mix(in srgb,var(--m) 6%,var(--paper-2)));
+  display:grid;place-items:center;overflow:hidden}
+.demo-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity .9s ease}
+.demo-art img.shown{opacity:1}
+/* Shown until a real illustration is dropped in — the app's own empty state,
+   not a stand-in pretending to be generated art. */
+.demo-pending{display:flex;flex-direction:column;align-items:center;gap:.55rem;
+  color:var(--muted);text-align:center;padding:1rem;transition:opacity .5s ease}
+.demo-art.has-art .demo-pending{opacity:0}
+.demo-pending svg{width:26px;height:26px;color:var(--accent)}
+.demo-pending .t{font-size:.8rem}
+.demo-pending .s{font-family:"IBM Plex Mono",monospace;font-size:.64rem;
+  letter-spacing:.14em;text-transform:uppercase}
+.demo-card.working .demo-pending svg{animation:spark 1.1s ease-in-out infinite}
+@keyframes spark{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.25);opacity:1}}
+
+.demo-hint{margin-top:1rem;text-align:center;font-family:"IBM Plex Mono",monospace;
+  font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.demo-dots{display:flex;gap:.35rem;justify-content:center;margin-top:.7rem}
+.demo-dots i{width:5px;height:5px;border-radius:50%;background:var(--rule);
+  transition:background .3s ease,transform .3s ease}
+.demo-dots i.on{background:var(--accent);transform:scale(1.4)}
+
+@media (prefers-reduced-motion:reduce){
+  .demo-card.typing .demo-body::after{animation:none}
+  .demo-card.working .demo-pending svg{animation:none}
+}
+
+/* ─── Style swatches, now switchable ─────────────────────────────────── */
+.swatch{cursor:pointer;font:inherit;color:inherit;text-align:left;width:100%;
+  transition:border-color .25s ease,transform .25s cubic-bezier(.2,.7,.2,1)}
+.swatch:hover{transform:translateY(-3px)}
+.swatch[aria-pressed="true"]{border-color:var(--accent);
+  box-shadow:0 0 0 1px var(--accent),var(--shadow-s)}
+.swatch-out{margin-top:1.4rem;background:var(--card);border:1px solid var(--rule);
+  border-radius:1rem;padding:1.2rem 1.35rem;box-shadow:var(--shadow-s);
+  display:flex;gap:1.1rem;align-items:flex-start}
+.swatch-out .bar{width:3px;border-radius:2px;align-self:stretch;background:var(--accent);flex:none}
+.swatch-out p{font-size:.92rem;color:var(--muted)}
+.swatch-out .h{font-family:Fraunces,Georgia,serif;font-size:1.05rem;font-weight:600;
+  margin-bottom:.3rem;color:var(--ink)}
+
+/* ─── Mood year ──────────────────────────────────────────────────────── */
+.year{display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,1fr);
+  gap:3px;margin-top:2.4rem;overflow-x:auto;padding-bottom:.5rem}
+.year i{width:11px;height:11px;border-radius:2.5px;background:var(--rule);
+  transition:transform .18s ease,box-shadow .18s ease}
+.year i[data-m]{background:var(--dm)}
+.year i:hover{transform:scale(1.7);box-shadow:0 0 0 2px var(--paper)}
+.year-out{margin-top:1.1rem;font-family:"IBM Plex Mono",monospace;font-size:.72rem;
+  color:var(--muted);min-height:1.2em}

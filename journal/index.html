@@ -43,7 +43,7 @@
   <!-- ── Hero ───────────────────────────────────────────────────────── -->
   <div class="hero">
     <div class="hero-wash" aria-hidden="true"><i></i></div>
-    <div class="wrap"><div class="hero-inner">
+    <div class="wrap"><div class="hero-grid"><div class="hero-inner">
       <p class="label">iPhone &middot; on-device &middot; one-time purchase</p>
       <h1>Write about your day.<br>Watch it become <em>art</em>.</h1>
       <p class="lede">Illustrated Journal reads what you wrote and draws it &mdash;
@@ -54,6 +54,32 @@
       </div>
       <p class="hero-note">AI illustrations need an iPhone with Apple&nbsp;Intelligence.
         Everything else works on any iPhone.</p>
+    </div>
+
+    <div>
+      <div class="demo-stack">
+        <div class="demo-card" data-demo role="button" tabindex="0"
+             aria-label="Sample journal entry. Activate for the next one.">
+          <div class="demo-meta">
+            <span class="demo-mood">Happy</span>
+            <span class="demo-date">Today</span>
+          </div>
+          <div class="demo-title">Morning at the Old Library</div>
+          <p class="demo-body">Found the most peaceful corner today.</p>
+          <div class="demo-art">
+            <img alt="">
+            <div class="demo-pending">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l1.5 4L17.5 8l-4 1.5L12 13.5l-1.5-4L6.5 8l4-1.5zM18.5 14l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8zM6 15l.6 1.5 1.5.6-1.5.6L6 19.2l-.6-1.5-1.5-.6 1.5-.6z"/></svg>
+              <span class="t">Your iPhone draws this part</span>
+              <span class="s">Illustration</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <p class="demo-hint">Tap the card for another entry</p>
+    </div>
+
     </div></div>
   </div>
 
@@ -156,11 +182,42 @@
       </div>
 
       <div class="swatches stagger">
-        <div class="swatch"><div class="n">Any</div><div class="d">Let it choose</div></div>
-        <div class="swatch"><div class="n">Illustration</div><div class="d">Soft, drawn, warm</div></div>
-        <div class="swatch"><div class="n">Sketch</div><div class="d">Pencil and line</div></div>
-        <div class="swatch"><div class="n">Animation</div><div class="d">Bold and graphic</div></div>
+        <button type="button" class="swatch" aria-pressed="true" data-style="Any"
+          data-copy="No style constraint at all — the app passes your entry straight through and lets the system pick whatever suits it. Good when you have no idea what the day should look like.">
+          <div class="n">Any</div><div class="d">Let it choose</div></button>
+        <button type="button" class="swatch" aria-pressed="false" data-style="Illustration"
+          data-copy="Soft edges, warm colour, drawn rather than rendered. The default for good days — gratitude, milestones, anything you want to look back on fondly.">
+          <div class="n">Illustration</div><div class="d">Soft, drawn, warm</div></button>
+        <button type="button" class="swatch" aria-pressed="false" data-style="Sketch"
+          data-copy="Pencil and line, little colour. Quieter than the others, which suits reflective and calm entries — the app suggests it for those moods on its own.">
+          <div class="n">Sketch</div><div class="d">Pencil and line</div></button>
+        <button type="button" class="swatch" aria-pressed="false" data-style="Animation"
+          data-copy="Bold shapes and flat graphic colour. The loudest of the four — good for the days that actually were loud.">
+          <div class="n">Animation</div><div class="d">Bold and graphic</div></button>
       </div>
+
+      <div class="swatch-out" data-style-out>
+        <span class="bar" aria-hidden="true"></span>
+        <div>
+          <div class="h">Any</div>
+          <p>No style constraint at all — the app passes your entry straight through and lets the system pick whatever suits it. Good when you have no idea what the day should look like.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Mood year ──────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap">
+      <div class="plate-head reveal">
+        <p class="label">A year at a glance</p>
+        <h2>Some things only show up from a distance.</h2>
+        <p>Tag each entry with a mood and the year fills in behind you. Which
+          months were heavy, which stretch you stopped writing, the week
+          everything turned &mdash; none of it is visible one day at a time.</p>
+      </div>
+      <div class="year" data-year aria-hidden="true"></div>
+      <p class="year-out" data-year-out>An example year. Hover a day.</p>
     </div>
   </section>
 
@@ -237,6 +294,18 @@
   </div>
 </footer>
 
-<script src="/assets/site.js" defer></script>
+<script type="application/json" id="demo-entries">
+[
+ {"title":"Morning at the Old Library","body":"Found the most peaceful corner today. The smell of old books and the warm sun on my notebook made an ordinary Tuesday feel like something worth keeping.","mood":"Happy","date":"Today","style":"Illustration","color":"#E0A500","art":"/journal/img/art/01.png"},
+ {"title":"First Frost","body":"Walked out to a world edged in white. Everything looked drawn in silver pencil — the fence, the last of the tomatoes, my own breath.","mood":"Calm","date":"Yesterday","style":"Sketch","color":"#2E8B9E","art":"/journal/img/art/02.png"},
+ {"title":"The Long Way Home","body":"Missed my stop on purpose. Sometimes the city at dusk deserves an extra twenty minutes — all those lit windows, each one somebody's whole evening.","mood":"Reflective","date":"2 days ago","style":"Animation","color":"#7A5AD8","art":"/journal/img/art/03.png"},
+ {"title":"Kitchen Experiment","body":"Attempted the bread again. Third time is apparently not the charm, but it smelled incredible and the crust was almost right.","mood":"Grateful","date":"4 days ago","style":"Illustration","color":"#D98324","art":"/journal/img/art/04.png"},
+ {"title":"Rain Against the Glass","body":"Stayed in and let the afternoon go. There's a particular comfort in weather that gives you permission to do nothing at all.","mood":"Calm","date":"6 days ago","style":"Sketch","color":"#2E8B9E","art":"/journal/img/art/05.png"},
+ {"title":"Something Worth Saying","body":"Finally had the conversation I'd been putting off for a month. It went nothing like I rehearsed and much better than I feared.","mood":"Excited","date":"8 days ago","style":"Illustration","color":"#D6437B","art":"/journal/img/art/06.png"},
+ {"title":"Trailhead at Sunrise","body":"Up before the light to beat the heat. The valley filled with mist like something poured into it, and for ten minutes I had the whole ridge to myself.","mood":"Happy","date":"11 days ago","style":"Illustration","color":"#E0A500","art":"/journal/img/art/07.png"},
+ {"title":"Quiet Sunday","body":"Nothing happened today and that was the entire point. Coffee, a long book, the cat asleep on the warm part of the floor.","mood":"Grateful","date":"13 days ago","style":"Illustration","color":"#D98324","art":"/journal/img/art/08.png"}
+]
+</script>
+<script src="/journal/assets/journal.js" defer></script>
 </body>
 </html>
