@@ -422,8 +422,8 @@ footer{border-top:1px solid var(--rule);padding-block:3rem;font-size:.85rem;colo
 .demo-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   opacity:0;transition:opacity .9s ease}
 .demo-art img.shown{opacity:1}
-/* Shown until a real illustration is dropped in — the app's own empty state,
-   not a stand-in pretending to be generated art. */
+/* The app's own pre-generate state. Shown while the illustration loads, and
+   left in place for any entry that has no artwork yet. */
 .demo-pending{display:flex;flex-direction:column;align-items:center;gap:.55rem;
   color:var(--muted);text-align:center;padding:1rem;transition:opacity .5s ease}
 .demo-art.has-art .demo-pending{opacity:0}
